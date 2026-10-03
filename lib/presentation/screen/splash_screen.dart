@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_test_app/core/di/injection_container.dart';
-import 'package:my_test_app/core/routes/route_name.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/splash/splash_bloc.dart';
-import 'package:my_test_app/presentation/bloc/splash/splash_event.dart';
-import 'package:my_test_app/presentation/bloc/splash/splash_state.dart';
+import 'package:pet_store_app/core/di/injection_container.dart';
+import 'package:pet_store_app/core/routes/route_name.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/splash/splash_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/splash/splash_event.dart';
+import 'package:pet_store_app/presentation/bloc/splash/splash_state.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

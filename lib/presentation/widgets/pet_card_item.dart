@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/data/model/pet_model.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/data/model/pet_model.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
 
 class PetCardItem extends StatelessWidget {
   final PetModel pet;

@@ -1,4 +1,4 @@
-import 'package:my_test_app/domain/entity/user_entity.dart';
+import 'package:pet_store_app/domain/entity/user_entity.dart';
 
 class UserModel extends UserEntity {
   const UserModel({

@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_test_app/domain/use_cases/add_pet_use_case.dart';
-import 'package:my_test_app/domain/use_cases/delete_pet_use_case.dart';
-import 'package:my_test_app/domain/use_cases/get_pets_by_status_use_case.dart';
-import 'package:my_test_app/domain/use_cases/update_pet_use_case.dart';
-import 'package:my_test_app/domain/use_cases/upload_pet_image_use_case.dart';
+import 'package:pet_store_app/domain/use_cases/add_pet_use_case.dart';
+import 'package:pet_store_app/domain/use_cases/delete_pet_use_case.dart';
+import 'package:pet_store_app/domain/use_cases/get_pets_by_status_use_case.dart';
+import 'package:pet_store_app/domain/use_cases/update_pet_use_case.dart';
+import 'package:pet_store_app/domain/use_cases/upload_pet_image_use_case.dart';
 import 'admin_pet_event.dart';
 import 'admin_pet_state.dart';
 

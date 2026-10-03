@@ -1,5 +1,5 @@
 
-import 'package:my_test_app/core/services/dio_client.dart';
+import 'package:pet_store_app/core/services/dio_client.dart';
 
 import '../../model/user_model.dart';
 

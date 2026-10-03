@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
-import 'package:my_test_app/core/constants/api_constants.dart';
+import 'package:pet_store_app/core/constants/api_constants.dart';
 
 class DioClient {
   late final Dio _dio;

@@ -1,5 +1,5 @@
 
-import 'package:my_test_app/domain/entity/category_entity.dart';
+import 'package:pet_store_app/domain/entity/category_entity.dart';
 
 class CategoryModel extends CategoryEntity {
   const CategoryModel({

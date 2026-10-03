@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_test_app/core/routes/route_name.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/onboarding/onboarding_bloc.dart';
-import 'package:my_test_app/presentation/bloc/onboarding/onboarding_event.dart';
-import 'package:my_test_app/presentation/bloc/onboarding/onboarding_state.dart';
+import 'package:pet_store_app/core/routes/route_name.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/onboarding/onboarding_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/onboarding/onboarding_event.dart';
+import 'package:pet_store_app/presentation/bloc/onboarding/onboarding_state.dart';
 
-class OnboardingScreen extends StatelessWidget {
-  OnboardingScreen({super.key});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
-  final PageController _pageController = PageController();
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
 
-  final List<OnboardingItem> _items = [
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  static const List<OnboardingItem> _items = [
     OnboardingItem(
-      logoImage: Assets.icons.icCoco.path,
+      logoImage: 'logo',
       title: 'Hey! Welcome',
-      description: 'Find the best premium & nutritious food\nfor your furry friends',
+      description:
+          'Find the best premium & nutritious food\nfor your furry friends',
       buttonText: 'Next',
     ),
     OnboardingItem(
@@ -25,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
       description:
           'One tap to order dry food, wet food,\ntreats & organic meals\n\nTailored for all breeds & ages\n\nFast & doorstep delivery',
       buttonText: 'Next',
-    ),   
+    ),
     OnboardingItem(
       title: 'We Provide',
       description:
@@ -34,16 +38,27 @@ class OnboardingScreen extends StatelessWidget {
     ),
   ];
 
- 
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void _onNextPressed(BuildContext context, int currentIndex) {
     if (currentIndex < _items.length - 1) {
-      
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     } else {
-     
       context.goNamed(RouteNames.registerName);
     }
   }
@@ -52,20 +67,17 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => OnboardingBloc(),
-      child: Scaffold(
-        body: BlocBuilder<OnboardingBloc, OnboardingState>(
-          builder: (context, state) {
-            return Stack(
+      child: BlocBuilder<OnboardingBloc, OnboardingState>(
+        builder: (context, state) {
+          return Scaffold(
+            body: Stack(
               children: [
-                // 1. Background Image
                 Positioned.fill(
                   child: Image.asset(
                     Assets.images.dog1.path,
                     fit: BoxFit.cover,
                   ),
                 ),
-
-                // 2. Full Width Bottom White Box
                 Positioned(
                   left: 0,
                   right: 0,
@@ -93,7 +105,6 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        // Custom Page Indicator (Active/Inactive Capsule Dots)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(
@@ -118,72 +129,69 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
-                        // PageView for Swiping Content Only
                         Expanded(
                           child: PageView.builder(
                             controller: _pageController,
                             itemCount: _items.length,
                             onPageChanged: (index) {
-                              context
-                                  .read<OnboardingBloc>()
-                                  .add(OnboardingPageChangedEvent(index));
+                              context.read<OnboardingBloc>().add(
+                                OnboardingPageChangedEvent(index),
+                              );
                             },
                             itemBuilder: (context, index) {
                               final item = _items[index];
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  // Logo Section
-                                  if (item.logoImage != null)
-                                    Image.asset(
-                                      item.logoImage!,
-                                      height: context.h(10),
-                                    )
-                                  else
-                                    SizedBox(height: context.h(10)),
+                              final logoPath = index == 0
+                                  ? Assets.icons.icCoco.path
+                                  : null;
 
-                                  SizedBox(height: context.h(1)),
-
-                                  // Title
-                                  Text(
-                                    item.title,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                              return SingleChildScrollView(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (logoPath != null)
+                                      Image.asset(
+                                        logoPath,
+                                        height: context.h(10),
+                                      )
+                                    else
+                                      SizedBox(height: context.h(10)),
+                                    SizedBox(height: context.h(1)),
+                                    Text(
+                                      item.title,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  SizedBox(height: context.h(1)),
-
-                                  // Description
-                                  Text(
-                                    item.description,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey[700],
-                                      height: 1.3,
+                                    SizedBox(height: context.h(1)),
+                                    Text(
+                                      item.description,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey[700],
+                                        height: 1.3,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      maxLines: 4,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 4,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               );
                             },
                           ),
                         ),
-
-                        // Action Button (Next / Get Started)
                         SizedBox(
                           width: double.infinity,
                           height: 46,
                           child: ElevatedButton(
-                            onPressed: () => _onNextPressed(
-                              context,
-                              state.pageIndex,
-                            ),
+                            onPressed: () =>
+                                _onNextPressed(context, state.pageIndex),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF52B467),
                               shape: RoundedRectangleBorder(
@@ -212,35 +220,37 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
-                        // Login Link Section
                         SizedBox(
                           height: 24,
                           child: state.pageIndex == _items.length - 1
                               ? Padding(
                                   padding: const EdgeInsets.only(top: 6),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                    context.pushNamed(RouteNames.loginName);
-                                    },
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        text: "Already have an account? ",
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Already have an account? ',
                                         style: TextStyle(
                                           color: Colors.black54,
                                           fontSize: 12,
                                         ),
-                                        children: [
-                                          TextSpan(
-                                            text: "Login",
-                                            style: TextStyle(
-                                              color: Color(0xFF52B467),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
                                       ),
-                                    ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          context.pushNamed(
+                                            RouteNames.loginName,
+                                          );
+                                        },
+                                        child: const Text(
+                                          'Log in',
+                                          style: TextStyle(
+                                            color: Color(0xFF52B467),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 )
                               : const SizedBox.shrink(),
@@ -250,9 +260,9 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -264,7 +274,7 @@ class OnboardingItem {
   final String description;
   final String buttonText;
 
-  OnboardingItem({
+  const OnboardingItem({
     this.logoImage,
     required this.title,
     required this.description,

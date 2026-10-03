@@ -1,4 +1,4 @@
-import 'package:my_test_app/domain/repository/pet_repository.dart';
+import 'package:pet_store_app/domain/repository/pet_repository.dart';
 
 class DeletePetUseCase {
   final PetRepository repository;

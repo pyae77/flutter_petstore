@@ -1,8 +1,8 @@
-import 'package:my_test_app/data/data_source/local/order_local_data_source.dart';
-import 'package:my_test_app/data/data_source/remote/store_remote_data_source.dart';
-import 'package:my_test_app/data/model/store_inventory_response_model.dart';
-import 'package:my_test_app/data/model/store_order_model.dart';
-import 'package:my_test_app/domain/repository/store_repository.dart';
+import 'package:pet_store_app/data/data_source/local/order_local_data_source.dart';
+import 'package:pet_store_app/data/data_source/remote/store_remote_data_source.dart';
+import 'package:pet_store_app/data/model/store_inventory_response_model.dart';
+import 'package:pet_store_app/data/model/store_order_model.dart';
+import 'package:pet_store_app/domain/repository/store_repository.dart';
 
 class StoreRepositoryImpl implements StoreRepository {
   final StoreRemoteDataSource remoteDataSource;

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_test_app/core/routes/route_name.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/main_home/main_home_bloc.dart';
-import 'package:my_test_app/presentation/bloc/main_home/main_home_event.dart';
-import 'package:my_test_app/presentation/bloc/main_home/main_home_state.dart';
-import 'package:my_test_app/presentation/screen/my_order_screen.dart';
-import 'package:my_test_app/presentation/screen/profile_screen.dart';
-import 'package:my_test_app/presentation/screen/store_screen.dart';
-import 'package:my_test_app/presentation/widgets/custom_app_bar.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/core/routes/route_name.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/main_home/main_home_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/main_home/main_home_event.dart';
+import 'package:pet_store_app/presentation/bloc/main_home/main_home_state.dart';
+import 'package:pet_store_app/presentation/screen/my_order_screen.dart';
+import 'package:pet_store_app/presentation/screen/profile_screen.dart';
+import 'package:pet_store_app/presentation/screen/store_screen.dart';
+import 'package:pet_store_app/presentation/widgets/custom_app_bar.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
 
 class MainHomeScreen extends StatelessWidget {
    const MainHomeScreen({super.key});

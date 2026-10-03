@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:my_test_app/domain/repository/pet_repository.dart';
-import 'package:my_test_app/presentation/bloc/store_screen/pet_event.dart';
-import 'package:my_test_app/presentation/bloc/store_screen/pet_state.dart';
+import 'package:pet_store_app/domain/repository/pet_repository.dart';
+import 'package:pet_store_app/presentation/bloc/store_screen/pet_event.dart';
+import 'package:pet_store_app/presentation/bloc/store_screen/pet_state.dart';
 
 class PetBloc extends Bloc<PetEvent, PetState> {
   final PetRepository repository;

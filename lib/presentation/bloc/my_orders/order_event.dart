@@ -1,4 +1,4 @@
-import 'package:my_test_app/data/model/store_order_model.dart';
+import 'package:pet_store_app/data/model/store_order_model.dart';
 
 abstract class OrderEvent {}
 

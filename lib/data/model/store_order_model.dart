@@ -1,4 +1,4 @@
-import 'package:my_test_app/domain/entity/store_order_entity.dart';
+import 'package:pet_store_app/domain/entity/store_order_entity.dart';
 
 class OrderModel extends OrderEntity {
   const OrderModel({

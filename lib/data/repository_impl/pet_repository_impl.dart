@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:my_test_app/data/data_source/remote/pet_remote_data_source.dart';
-import 'package:my_test_app/data/model/pet_model.dart';
-import 'package:my_test_app/domain/repository/pet_repository.dart';
+import 'package:pet_store_app/data/data_source/remote/pet_remote_data_source.dart';
+import 'package:pet_store_app/data/model/pet_model.dart';
+import 'package:pet_store_app/domain/repository/pet_repository.dart';
 
 import '../model/pet_upload_image_response_model.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
 
 class CustomButton extends StatelessWidget {
   final Color? backgroundColor;

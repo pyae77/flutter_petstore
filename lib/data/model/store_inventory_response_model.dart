@@ -1,4 +1,4 @@
-import 'package:my_test_app/domain/entity/inventory_entity.dart';
+import 'package:pet_store_app/domain/entity/inventory_entity.dart';
 
 class InventoryModel extends InventoryEntity {
   const InventoryModel({required super.statusCounts});

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_test_app/core/services/storage_service.dart';
+import 'package:pet_store_app/core/services/storage_service.dart';
 import 'splash_event.dart';
 import 'splash_state.dart';
 

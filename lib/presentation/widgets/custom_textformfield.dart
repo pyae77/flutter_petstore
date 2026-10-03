@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/gen/assets.gen.dart'; 
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
+  final String? initialValue;
   final FocusNode? focusNode;
 
   final String? labelText;
@@ -19,16 +20,17 @@ class CustomTextFormField extends StatelessWidget {
   final VoidCallback? onTap;
   final String? Function(String?)? validator;
   final Widget? prefixIcon;
-  final Widget? suffixIcon; 
+  final Widget? suffixIcon;
   final Color? fillColor;
 
   final double? borderWidth;
   final double? radius;
-  final bool obscureText; // obscureText ထည့်သွင်းထားပါသည်
+  final bool obscureText;
 
   const CustomTextFormField({
     super.key,
     this.controller,
+    this.initialValue,
     this.focusNode,
     this.labelText,
     this.hintText,
@@ -45,7 +47,7 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.borderWidth,
     this.radius,
-    this.obscureText = false, // default value ကို false ထားပေးထားပါသည်
+    this.obscureText = false,
   });
 
   @override
@@ -65,21 +67,20 @@ class CustomTextFormField extends StatelessWidget {
 
     return TextFormField(
       controller: controller,
+      initialValue: initialValue,
       focusNode: focusNode,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
-      obscureText: obscureText, // TextFormField သို့ ချိတ်ဆက်ပေးထားပါသည်
+      obscureText: obscureText,
       onChanged: onChanged,
       onFieldSubmitted: onSubmitted,
       onTap: onTap,
       validator: validator,
-      
       style: TextStyle(
         color: AppColors.black,
-        fontFamily: Assets.fonts.fredokaMedium, 
+        fontFamily: Assets.fonts.fredokaMedium,
         fontSize: 15,
       ),
-
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
@@ -89,37 +90,30 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: fillColor ?? const Color.fromARGB(255, 239, 237, 237),
-        
         labelStyle: TextStyle(
-          color: AppColors.grey1, 
+          color: AppColors.grey1,
           fontSize: 16,
         ),
-        
         hintStyle: TextStyle(
           color: AppColors.grey1,
           fontFamily: Assets.fonts.fredokaMedium,
           fontSize: 14,
         ),
-
         prefixIconConstraints: const BoxConstraints(
           minWidth: 40,
           minHeight: 24,
           maxWidth: 40,
           maxHeight: 24,
         ),
-
         errorStyle: TextStyle(
           color: AppColors.neutralRed,
           fontFamily: Assets.fonts.fredokaMedium,
           fontSize: 12,
         ),
-
         enabledBorder: buildBorder(Colors.transparent),
         focusedBorder: buildBorder(AppColors.primaryGreen, 1.5),
-        
         errorBorder: buildBorder(AppColors.neutralRed),
         focusedErrorBorder: buildBorder(AppColors.neutralRed, 1.5),
-
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 14,

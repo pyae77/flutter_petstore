@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_test_app/core/services/storage_service.dart';
-import 'package:my_test_app/data/data_source/remote/user_remote_data_source.dart';
+import 'package:pet_store_app/core/services/storage_service.dart';
+import 'package:pet_store_app/domain/repository/user_repository.dart';
 import 'profile_event.dart';
 import 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final UserRemoteDataSource userRemoteDataSource;
+  final UserRepository userRepository;
   final StorageService storageService;
 
   ProfileBloc({
-    required this.userRemoteDataSource,
+    required this.userRepository,
     required this.storageService,
   }) : super(ProfileInitialState()) {
     on<LoadProfileEvent>(_onLoadProfile);
@@ -25,7 +25,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       final username = await storageService.getUsername() ?? '';
       if (username.isNotEmpty) {
-        final user = await userRemoteDataSource.getUserByUsername(username);
+        final user = await userRepository.getUserByUsername(username);
         emit(ProfileLoadedState(user: user));
       } else {
         emit(const ProfileErrorState(message: 'User session not found'));
@@ -41,7 +41,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     emit(ProfileLoadingState());
     try {
-      await userRemoteDataSource.updateUser(event.username, event.user);
+      await userRepository.updateUser(event.username, event.user);
       await storageService.saveAuthData(
         token: await storageService.getSessionToken() ?? '',
         username: event.user.userName ?? event.username,
@@ -58,11 +58,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     emit(ProfileLoadingState());
     try {
-      await userRemoteDataSource.logout(); // API Logout call
-      await storageService.clearAuthData(); // Local Secure Storage Clear
+      await userRepository.logout();
+      await storageService.clearAuthData();
       emit(ProfileLogoutSuccessState());
     } catch (e) {
-    
       await storageService.clearAuthData();
       emit(ProfileLogoutSuccessState());
     }

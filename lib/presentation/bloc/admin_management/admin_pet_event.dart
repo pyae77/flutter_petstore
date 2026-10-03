@@ -1,7 +1,7 @@
 // presentation/bloc/admin_pet_event.dart
 import 'dart:io';
 import 'package:equatable/equatable.dart';
-import 'package:my_test_app/data/model/pet_model.dart';
+import 'package:pet_store_app/data/model/pet_model.dart';
 
 abstract class AdminPetEvent extends Equatable {
   const AdminPetEvent();

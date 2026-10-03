@@ -1,6 +1,6 @@
 // profile_event.dart
 import 'package:equatable/equatable.dart';
-import 'package:my_test_app/data/model/user_model.dart';
+import 'package:pet_store_app/domain/entity/user_entity.dart';
 
 abstract class ProfileEvent extends Equatable {
   const ProfileEvent();
@@ -12,7 +12,7 @@ class LoadProfileEvent extends ProfileEvent {}
 
 class UpdateProfileEvent extends ProfileEvent {
   final String username;
-  final UserModel user;
+  final UserEntity user;
 
   const UpdateProfileEvent({required this.username, required this.user});
 

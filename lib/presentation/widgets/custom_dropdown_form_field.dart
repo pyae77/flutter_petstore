@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
 
 class CustomDropdownFormField<T> extends StatelessWidget {
   final T? value;

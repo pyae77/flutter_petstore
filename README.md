@@ -1,17 +1,48 @@
-# my_test_app
+# Pet Store App
 
-A new Flutter project.
+A Flutter mobile app for a pet store experience with onboarding, login, registration, home screen, and admin features.
+
+## Features
+
+- Onboarding flow
+- User login and registration
+- Pet store home screen
+- Order management
+- Profile screen
+- Admin management screen
+- Dependency injection with GetIt
+- Routing with GoRouter
+- State management with Flutter BLoC
+
+## Project Structure
+
+- `lib/core` – app-wide config, routing, services, theme, utilities
+- `lib/data` – data sources, models, repositories
+- `lib/domain` – entities and use cases
+- `lib/presentation` – screens, widgets, and BLoC logic
+
+## Tech Stack
+
+- Flutter
+- Dart
+- Flutter BLoC
+- GoRouter
+- GetIt
+- Dio
+- Hive
+- Flutter Secure Storage
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Install Flutter SDK.
+2. Clone the project.
+3. Run:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+flutter run
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Notes
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project follows a layered architecture and is designed for clean separation of concerns between UI, business logic, and data access.

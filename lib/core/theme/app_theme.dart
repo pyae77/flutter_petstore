@@ -2,7 +2,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:my_test_app/core/theme/app_typography.dart';
+import 'package:pet_store_app/core/theme/app_typography.dart';
 
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/gen/fonts.gen.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/gen/fonts.gen.dart';
 
 class CustomTextWidget extends StatelessWidget {
   final String text;

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_test_app/core/di/injection_container.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/data/model/store_order_model.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/my_orders_screen.dart/order_bloc.dart';
-import 'package:my_test_app/presentation/bloc/my_orders_screen.dart/order_event.dart';
-import 'package:my_test_app/presentation/bloc/my_orders_screen.dart/order_state.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/core/di/injection_container.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/data/model/store_order_model.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/my_orders/order_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/my_orders/order_event.dart';
+import 'package:pet_store_app/presentation/bloc/my_orders/order_state.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
 
 class MyOrdersScreen extends StatelessWidget {
   const MyOrdersScreen({super.key});

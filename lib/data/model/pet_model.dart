@@ -1,4 +1,4 @@
-import 'package:my_test_app/domain/entity/pet_entity.dart';
+import 'package:pet_store_app/domain/entity/pet_entity.dart';
 
 import 'category_model.dart';
 import 'tag_model.dart';

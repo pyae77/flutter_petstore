@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_test_app/core/di/injection_container.dart';
-import 'package:my_test_app/core/routes/route_name.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/data/model/user_model.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/profile/profile_bloc.dart';
-import 'package:my_test_app/presentation/bloc/profile/profile_event.dart';
-import 'package:my_test_app/presentation/bloc/profile/profile_state.dart';
-import 'package:my_test_app/presentation/widgets/custom_button.dart';
-import 'package:my_test_app/presentation/widgets/custom_textformfield.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/core/di/injection_container.dart';
+import 'package:pet_store_app/core/routes/route_name.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/domain/entity/user_entity.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/profile/profile_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/profile/profile_event.dart';
+import 'package:pet_store_app/presentation/bloc/profile/profile_state.dart';
+import 'package:pet_store_app/presentation/widgets/custom_button.dart';
+import 'package:pet_store_app/presentation/widgets/custom_textformfield.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
             );
           }
 
-          UserModel? user;
+          UserEntity? user;
           if (state is ProfileLoadedState) {
             user = state.user;
           }
@@ -224,7 +224,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  void _showEditProfileDialog(BuildContext context, UserModel? currentUser) {
+  void _showEditProfileDialog(BuildContext context, UserEntity? currentUser) {
     final firstNameController = TextEditingController(text: currentUser?.firstName ?? '');
     final lastNameController = TextEditingController(text: currentUser?.lastName ?? '');
     final passwordController = TextEditingController(text: currentUser?.password ?? '');
@@ -309,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: 8,
                   buttonHeight: context.h(4.5),
                   onPressed: () {
-                    final updatedUser = UserModel(
+                    final updatedUser = UserEntity(
                       id: currentUser?.id ?? 0,
                       userName: currentUser?.userName ?? '',
                       firstName: firstNameController.text.trim(),

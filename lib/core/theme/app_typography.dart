@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_test_app/gen/fonts.gen.dart';
+import 'package:pet_store_app/gen/fonts.gen.dart';
 
 class AppTypography {
   static TextStyle fredoka({double fontSize=14,FontWeight fontWeight=FontWeight.normal,Color? color}){

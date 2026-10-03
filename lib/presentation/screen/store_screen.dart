@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_test_app/core/di/injection_container.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
-import 'package:my_test_app/core/utils/responsive_extension.dart';
-import 'package:my_test_app/data/model/pet_model.dart';
-import 'package:my_test_app/gen/assets.gen.dart';
-import 'package:my_test_app/presentation/bloc/my_orders_screen.dart/order_bloc.dart';
-import 'package:my_test_app/presentation/bloc/store_screen/pet_bloc.dart';
-import 'package:my_test_app/presentation/bloc/store_screen/pet_event.dart';
-import 'package:my_test_app/presentation/bloc/store_screen/pet_state.dart';
-import 'package:my_test_app/presentation/widgets/custom_button.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_field.dart';
-import 'package:my_test_app/presentation/widgets/custom_text_widget.dart';
-import 'package:my_test_app/presentation/widgets/order_dialog.dart';
+import 'package:pet_store_app/core/di/injection_container.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/utils/responsive_extension.dart';
+import 'package:pet_store_app/data/model/pet_model.dart';
+import 'package:pet_store_app/gen/assets.gen.dart';
+import 'package:pet_store_app/presentation/bloc/my_orders/order_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/store_screen/pet_bloc.dart';
+import 'package:pet_store_app/presentation/bloc/store_screen/pet_event.dart';
+import 'package:pet_store_app/presentation/bloc/store_screen/pet_state.dart';
+import 'package:pet_store_app/presentation/widgets/custom_button.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_field.dart';
+import 'package:pet_store_app/presentation/widgets/custom_text_widget.dart';
+import 'package:pet_store_app/presentation/widgets/order_dialog.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -22,11 +22,10 @@ class StoreScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<PetBloc>()..add( FetchPetsByStatusEvent('available')),
+          create: (context) =>
+              sl<PetBloc>()..add(const FetchPetsByStatusEvent('available')),
         ),
-        BlocProvider(
-          create: (context) => sl<OrderBloc>(),
-        ),
+        BlocProvider(create: (context) => sl<OrderBloc>()),
       ],
       child: const StoreScreenView(),
     );
@@ -92,20 +91,28 @@ class StoreScreenView extends StatelessWidget {
                               child: CustomTextWidget(
                                 text: _getStatusLabel(status),
                                 fontSize: 12,
-                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                                color: isSelected ? AppColors.black : Colors.grey,
+                                fontWeight: isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: isSelected
+                                    ? AppColors.black
+                                    : Colors.grey,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
                         ),
                         selected: isSelected,
-                        selectedColor: AppColors.primaryGreen.withValues(alpha: 0.2),
+                        selectedColor: AppColors.primaryGreen.withValues(
+                          alpha: 0.2,
+                        ),
                         backgroundColor: Colors.grey.shade100,
                         showCheckmark: false,
                         onSelected: (selected) {
                           if (selected) {
-                            context.read<PetBloc>().add(FetchPetsByStatusEvent(status));
+                            context.read<PetBloc>().add(
+                              FetchPetsByStatusEvent(status),
+                            );
                           }
                         },
                       ),
@@ -127,7 +134,9 @@ class StoreScreenView extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
-                      state.errorMessage.isEmpty ? 'Failed to fetch pets' : state.errorMessage,
+                      state.errorMessage.isEmpty
+                          ? 'Failed to fetch pets'
+                          : state.errorMessage,
                     ),
                     backgroundColor: Colors.red,
                   ),
@@ -137,7 +146,9 @@ class StoreScreenView extends StatelessWidget {
             builder: (context, state) {
               if (state.status == PetStatus.loading) {
                 return const Center(
-                  child: CircularProgressIndicator(color: AppColors.primaryGreen),
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryGreen,
+                  ),
                 );
               }
 
@@ -148,34 +159,36 @@ class StoreScreenView extends StatelessWidget {
               }
 
               return NotificationListener<ScrollNotification>(
-  onNotification: (scrollInfo) {
-  if (scrollInfo is ScrollEndNotification &&
-      scrollInfo.metrics.pixels >= scrollInfo.metrics.maxScrollExtent - 50) {
-    context.read<PetBloc>().add(const LoadMorePetsEvent());
-  }
-  return false;
-},
-  child: ListView.builder(
-    padding: EdgeInsets.symmetric(horizontal: context.w(4)),
-    itemCount: state.filteredPets.length + (state.hasMore ? 1 : 0),
-    itemBuilder: (context, index) {
-      if (index == state.filteredPets.length) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(vertical: 16.0),
-          child: Center(
-            child: CircularProgressIndicator(
-              color: AppColors.primaryGreen,
-              strokeWidth: 2,
-            ),
-          ),
-        );
-      }
+                onNotification: (scrollInfo) {
+                  if (scrollInfo is ScrollEndNotification &&
+                      scrollInfo.metrics.pixels >=
+                          scrollInfo.metrics.maxScrollExtent - 50) {
+                    context.read<PetBloc>().add(const LoadMorePetsEvent());
+                  }
+                  return false;
+                },
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: context.w(4)),
+                  itemCount:
+                      state.filteredPets.length + (state.hasMore ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == state.filteredPets.length) {
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.0),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryGreen,
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      );
+                    }
 
-      final pet = state.filteredPets[index];
-      return PetCardItem(pet: pet);
-    },
-  ),
-);
+                    final pet = state.filteredPets[index];
+                    return PetCardItem(pet: pet);
+                  },
+                ),
+              );
             },
           ),
         ),
@@ -216,8 +229,9 @@ class PetCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categoryName =
-        pet.category?.name.isNotEmpty == true ? pet.category!.name : 'N/A';
+    final categoryName = pet.category?.name.isNotEmpty == true
+        ? pet.category!.name
+        : 'N/A';
 
     return Card(
       margin: EdgeInsets.only(bottom: context.h(1.5)),
@@ -280,7 +294,9 @@ class PetCardItem extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: CustomButton(
-                      text: pet.status == 'available' ? 'Buy Now' : 'Unavailable',
+                      text: pet.status == 'available'
+                          ? 'Buy Now'
+                          : 'Unavailable',
                       fontSize: 12,
                       textWeight: FontWeight.w600,
                       textColor: AppColors.black,
@@ -294,7 +310,7 @@ class PetCardItem extends StatelessWidget {
                           ? () => showPlaceOrderDialog(context, pet)
                           : null,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

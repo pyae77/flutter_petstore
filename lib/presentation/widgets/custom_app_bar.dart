@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_test_app/core/theme/app_colors.dart';
+import 'package:pet_store_app/core/theme/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? leading;
